@@ -1,13 +1,13 @@
 # 🎬 IMDb Sentiment Analyzer — Backend
 
 Node.js + Express + TypeScript REST API that fetches movie data from OMDB
-and uses Claude AI to generate audience sentiment analysis.
+and uses OpenAi  to generate audience sentiment analysis.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 ```
-imdb-sentiment-backend/
+brew-backend/
 ├── src/
 │   ├── __tests__/          # Jest unit + integration tests
 │   ├── config/             # Centralized env config
@@ -17,7 +17,7 @@ imdb-sentiment-backend/
 │   ├── services/           # OMDB + OpenAi service logic
 │   ├── types/              # Shared TypeScript interfaces
 │   └── index.ts            # App entry point
-├── .env.example
+├── .env
 ├── jest.config.js
 ├── package.json
 └── tsconfig.json
@@ -29,14 +29,14 @@ imdb-sentiment-backend/
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/your-org/imdb-sentiment-backend.git
-cd imdb-sentiment-backend
+git clone https://github.com/yashutandon/brew-backend.git
+cd brew-backend
 npm install
 ```
 
 ### 2. Configure Environment Variables
 ```bash
-cp .env.example .env
+cp .env
 ```
 
 Edit `.env` and fill in:
@@ -44,7 +44,7 @@ Edit `.env` and fill in:
 | Variable            | Where to get it                               |
 | ------------------- | --------------------------------------------- |
 | `OMDB_API_KEY`      | https://www.omdbapi.com/apikey.aspx (free)    |
-| `ANTHROPIC_API_KEY` | https://platform.openai.com (paid)          |
+| `OPENAI_API_KEY` | https://platform.openai.com (paid)          |
 | `FRONTEND_URL`      | Your Next.js frontend URL (default: localhost:3000) |
 
 ### 3. Run in Development
@@ -68,7 +68,7 @@ npm run test:coverage   # with coverage report
 
 ---
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ### `GET /api/movie/:imdbId`
 
