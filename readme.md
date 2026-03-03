@@ -14,7 +14,7 @@ imdb-sentiment-backend/
 │   ├── controllers/        # Route handlers
 │   ├── middleware/         # Error handlers
 │   ├── routes/             # Express routers
-│   ├── services/           # OMDB + Anthropic service logic
+│   ├── services/           # OMDB + OpenAi service logic
 │   ├── types/              # Shared TypeScript interfaces
 │   └── index.ts            # App entry point
 ├── .env.example
@@ -25,7 +25,7 @@ imdb-sentiment-backend/
 
 ---
 
-## 🚀 Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone & Install
 ```bash
@@ -44,7 +44,7 @@ Edit `.env` and fill in:
 | Variable            | Where to get it                               |
 | ------------------- | --------------------------------------------- |
 | `OMDB_API_KEY`      | https://www.omdbapi.com/apikey.aspx (free)    |
-| `ANTHROPIC_API_KEY` | https://console.anthropic.com (paid)          |
+| `ANTHROPIC_API_KEY` | https://platform.openai.com (paid)          |
 | `FRONTEND_URL`      | Your Next.js frontend URL (default: localhost:3000) |
 
 ### 3. Run in Development
@@ -114,7 +114,7 @@ Returns server health status.
 
 ---
 
-## 🧠 Tech Stack Rationale
+##  Tech Stack Rationale
 
 | Technology      | Reason                                                                |
 | --------------- | --------------------------------------------------------------------- |
@@ -128,7 +128,7 @@ Returns server health status.
 
 ---
 
-## 📝 Assumptions
+##  Assumptions
 
 1. **OMDB covers all required metadata** — cast, poster, plot, ratings are all
    available via OMDB for virtually all IMDb titles.
@@ -139,4 +139,4 @@ Returns server health status.
 3. **Free OMDB tier is sufficient** — 1,000 daily requests covers dev/demo use.
    Production use would require a paid plan.
 4. **IMDb IDs are 7–8 digits** — the `tt` + 7–8 digit format covers all
-   known IMDb titles as of 2024.
+   known IMDb titles as of 2026.

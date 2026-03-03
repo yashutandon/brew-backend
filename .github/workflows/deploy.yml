@@ -35,7 +35,7 @@ jobs:
             # 4. Start PM2 from src folder
             pm2 delete brew-be-api || true
             
-            # YAHAN DHYAN DO: Path src/index.ts use kiya hai
+            
             pm2 start src/index.ts --name "brew-be-api" --interpreter ts-node
 
             # 5. Save settings
