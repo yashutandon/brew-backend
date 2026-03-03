@@ -1,9 +1,9 @@
-name: Backend CD Pipeline
+name: Backend Deployment
 
 on:
   push:
     branches:
-      - main  # Jab aap main branch par push karenge tabhi chale
+      - main
 
 jobs:
   deploy:
@@ -20,19 +20,21 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 1. Project folder mein jana (Agar nahi hai to banana)
+            # 1. Purana folder saaf karke fresh start
+            rm -rf ~/brew-be
             mkdir -p ~/brew-be
             cd ~/brew-be
 
-            # 2. GitHub se latest code lena
-            if [ ! -d ".git" ]; then
-              git clone https://github.com/${{ github.repository }}.git .
-            else
-              git pull origin main
-            fi
+            # 2. Code clone karna (Dot '.' ka matlab isi folder mein files aayengi)
+            git clone https://github.com/${{ github.repository }}.git .
 
             # 3. Dependencies install karna
-            npm install --production
+            npm install
 
-            # 4. App ko restart karna (index.js ko apni main file se replace karein)
-            pm2 restart all || pm2 start index.ts --name "brew-be-api" --interpreter ts-node
+            # 4. TypeScript compiler aur ts-node check/install
+            sudo npm install -g ts-node typescript
+
+            # 5. Purana process delete karke naya start karna
+            # --interpreter ts-node isliye kyunki tumhari file index.ts hai
+            pm2 delete brew-be-api || true
+            pm2 start index.ts --name "brew-be-api" --interpreter ts-node
