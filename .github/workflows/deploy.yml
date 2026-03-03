@@ -35,4 +35,4 @@ jobs:
             npm install --production
 
             # 4. App ko restart karna (index.js ko apni main file se replace karein)
-            pm2 restart all || pm2 start index.js --name "my-api"
+            pm2 restart all || pm2 start index.ts --name "brew-be-api" --interpreter ts-node
