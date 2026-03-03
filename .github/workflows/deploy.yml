@@ -20,21 +20,23 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 1. Purana folder saaf karke fresh start
-            rm -rf ~/brew-be
+            # 1. Folder setup
+            sudo rm -rf ~/brew-be
             mkdir -p ~/brew-be
             cd ~/brew-be
 
-            # 2. Code clone karna (Dot '.' ka matlab isi folder mein files aayengi)
+            # 2. Clone Public Repo
             git clone https://github.com/${{ github.repository }}.git .
 
-            # 3. Dependencies install karna
+            # 3. Install Tools
             npm install
+            sudo npm install -g ts-node typescript pm2
 
-            # 4. TypeScript compiler aur ts-node check/install
-            sudo npm install -g ts-node typescript
-
-            # 5. Purana process delete karke naya start karna
-            # --interpreter ts-node isliye kyunki tumhari file index.ts hai
+            # 4. Start PM2 from src folder
             pm2 delete brew-be-api || true
-            pm2 start index.ts --name "brew-be-api" --interpreter ts-node
+            
+            # YAHAN DHYAN DO: Path src/index.ts use kiya hai
+            pm2 start src/index.ts --name "brew-be-api" --interpreter ts-node
+
+            # 5. Save settings
+            pm2 save
